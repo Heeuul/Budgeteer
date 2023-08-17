@@ -1,10 +1,8 @@
 package com.silverworks.budgeteer_back.model;
 
-import java.util.UUID;
-
 import org.hibernate.annotations.GenericGenerator;
-
 import jakarta.persistence.*;
+import java.util.UUID;
 import lombok.*;
 
 @Getter
@@ -19,6 +17,10 @@ public class Wallet {
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "id", updatable = false, nullable = false, columnDefinition = "VARCHAR(16)")
     UUID id;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    User user;
 
     @Column(name = "label", columnDefinition = "VARCHAR(25)")
     String label;

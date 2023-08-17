@@ -11,23 +11,23 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
+public class Expense {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "id", updatable = false, nullable = false, columnDefinition = "VARCHAR(16)")
     UUID id;
 
-    @Column(name = "username", columnDefinition = "VARCHAR(50)")
-    String username;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    User user;
 
-    @Column(name = "email", columnDefinition = "VARCHAR(50)")
-    String email;
+    @Column(name = "category", columnDefinition = "VARCHAR(10)")
+    String category;
 
-    @Column(name = "password", columnDefinition = "VARCHAR(255)")
-    String password;
+    @Column(name = "title", columnDefinition = "VARCHAR(25)")
+    String title;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "joined", columnDefinition = "DATETIME")
-    java.util.Date joined;
+    @Column(name = "allocation", columnDefinition = "INT")
+    int allocation;
 }
